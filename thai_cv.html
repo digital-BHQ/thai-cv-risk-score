@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="BHQtheme">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thai Cardio Vascular Risk Score 2.5</title>
+<link rel="icon" href="favicon.ico" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
+
+<style>
+:root,[data-theme="BHQtheme"]{
+    --color-base-100: #FBFBFC;    /* base-100 */
+    --color-base-content: #363636;    /* base-content */
+    --color-primary:  #012D73;    /* primary */
+    --color-primary-content: #ffffff;    /* primary-content */
+    --color-secondary:  #0247A3;    /* secondary */
+    --color-accent:  #A20B1C;    /* accent */
+    --color-info: #E7EDFF;    /* info */
+    --color-info-content: #012D73;    /* info */
+    --color-success: #36D399;    /* success */
+    --color-warning: #FBBD23;    /* warning */
+    --color-error: #D32F2F;    /* error */
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  body{
+    background-color: var(--n);
+    color:var(--bc);
+    font-family: 'Satoshi', "Noto Sans Thai", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 0.03rem;
+  }
+.range-primary-theme{
+  --range: oklch(var(--color-primary));
+  --range-thumb: oklch(var(--color-secondary));
+}
+.join-item.btn{
+  background-color: #d8d5d1;
+}
+.join-item.btn:checked{
+  background-color: var(--color-secondary);
+  color: var(--color-primary-content);
+}
+.toggle-colored {
+  --handlebg: var(--color-secondary) !important;
+  
+}
+</style>
+</head>
+<body class="min-h-screen">
+  <div class="bg-base-100 h-12 flex place-content-center items-center shadow-sm sticky top-0 z-20">
+    <h1>
+      Thai Cardio Vascular Risk Score
+    </h1>
+  </div>
+
+  <main class="container mx-auto p-4 max-w-3xl bg-[#FAFAFB]">
+    <!-- FORM CARD -->
+    <section id="formSection" class="">
+      <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+          <h2 class="card-title">ข้อมูลที่จำเป็น (ต้องกรอกทุกข้อ)</h2>
+          <div class="grid gap-6">
+            <!-- อายุ -->
+            <label class="form-control w-full">
+              <div class="label"><span class="text-primary">อายุ</div>
+              <input id="age" type="range" min="35" max="70" value="45" class="range range-primary-theme range-sm w-full my-2" data-unit="ปี" />
+              <div class="flex justify-between text-xs px-1"><span>35</span><span>70</span></div>
+            </label>
+
+            <!-- เพศ -->
+            <div class="form-control">
+              <label class="label mr-4">เพศ</label>
+              <div class="join">
+                <input class="join-item btn rounded-l-full px-4" type="radio" name="sex" aria-label="หญิง" id="sex_f" value="0" checked />
+                <input class="join-item btn rounded-r-full px-4" type="radio" name="sex" aria-label="ชาย" id="sex_m" value="1" />
+              </div>
+            </div>
+
+            <!-- สูบบุหรี่ -->
+            <div class="form-control">
+              <label class="label mr-4">สูบบุหรี่อยู่</label>
+              <span class="label-text">ไม่</span>
+              <input id="smoke" type="checkbox" class="toggle toggle-primary toggle-sm" />
+              <span class="label-text">ใช่</span>
+            </div>
+
+            <!-- เบาหวาน -->
+            <div class="form-control">
+              <label class="label mr-4">เป็นโรคเบาหวาน</label>
+              <span class="label-text">ไม่</span>
+              <input id="dm" type="checkbox" class="toggle toggle-colored border-2 border-[var(--color-secondary)] p-1" />
+              <span class="label-text">ใช่</span>
+            </div>
+
+            <!-- SBP -->
+            <label class="form-control w-full">
+              <div class="label"><span class="label-text">ความดันโลหิตตัวบน</span></div>
+              <input id="sbp" type="range" min="80" max="200" value="120" class="range range-primary-theme range-sm w-full my-2" data-unit="mmHg" />
+              <div class="flex justify-between text-xs px-1"><span>80</span><span>200</span></div>
+            </label>
+
+            <!-- ผลเลือด toggle -->
+            <div class="form-control">
+              <div class="label mr-4">การใช้ผลเลือด</div>
+              <div class="join">
+                <input class="join-item btn rounded-l-full px-4" type="radio" name="blood_test" aria-label="ไม่ใช้ผลเลือด" id="blood_off" value="1" checked />
+                <input class="join-item btn rounded-r-full px-4" type="radio" name="blood_test" aria-label="ใช้ผลเลือด" id="blood_on" value="2" />
+              </div>
+            </div>
+
+            <!-- Cholesterol (disabled by default) -->
+            <label class="form-control w-full" id="tc_wrap">
+              <div class="label"><span class="label-text">โคเรสเตอรอลรวม</span></div>
+              <input id="tc" type="range" min="0" max="280" value="200" class="range range-primary-theme range-sm w-full my-2" data-unit="mg/dL" disabled />
+              <div class="flex justify-between text-xs px-1"><span>0</span><span>280</span></div>
+              <div class="alert alert-info text-sm">
+              หากผลเลือดของท่านมีค่ามากกว่าที่กำหนดให้เลือกค่าสูงสุด
+            </div>
+            </label>
+            
+
+            <!-- รอบเอว (นิ้ว) -->
+            <label class="form-control w-full" id="wc_wrap">
+              <div class="label"><span class="label-text">รอบเอว</span></div>
+              <input id="wc" type="range" min="20" max="60" value="30" class="range range-primary-theme range-sm w-full my-2" data-unit="นิ้ว" />
+              <div class="flex justify-between text-xs px-1"><span>20</span><span>60</span></div>
+            </label>
+
+            <!-- ส่วนสูง (cm) -->
+            <label class="form-control w-full" id="bdh_wrap">
+              <div class="label"><span class="label-text">ส่วนสูง</span></div>
+              <input id="bdh" type="range" min="130" max="210" value="160" class="range range-primary-theme range-sm w-full my-2" data-unit="ซม" />
+              <div class="flex justify-between text-xs px-1"><span>130</span><span>210</span></div>
+            </label>
+
+            
+          </div>
+
+          <div class="form-control mt-12">
+            <label class="cursor-pointer label justify-start gap-2">
+              <input id="consent_ack" type="checkbox" class="checkbox checkbox-primary">
+              <span class="label-text text-sm text-wrap">
+                ข้าพเจ้าทราบและยินยอมให้นำคำตอบเหล่านี้ไปประมวลผล ข้อมูลเหล่านี้ไม่สามารถระบุตัวตนของข้าพเจ้าได้
+              </span>
+            </label>
+          </div>
+          
+
+          <div class="card-actions justify-end mt-4">
+            <button id="calcBtn" class="btn btn-primary">แสดงผล</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULT CARD -->
+    <section id="resultSection" class="hidden">
+      <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+          <h2 class="card-title">ผลการประเมิน</h2>
+          <div class="space-y-3">
+            <h3 class="text-lg leading-snug">ความเสี่ยงต่อการเกิดโรคเส้นเลือดหัวใจและหลอดเลือดในระยะเวลา 10 ปีของท่านเท่ากับ <strong id="sc2">0</strong>% <strong id="sc5"></strong></h3>
+            <h3 class="text-lg leading-snug"><strong id="sc1"></strong>ของคนไทยเพศเดียวกัน อายุเท่ากัน และปราศจากปัจจัยเสี่ยง</h3>
+            <h3 class="text-lg font-semibold">ข้อแนะนำเบื้องต้น</h3>
+            <p id="sc4">ไม่มี</p>
+          </div>
+
+          <div class="divider"></div>
+          <h3 class="font-semibold">หมายเหตุ (Disclaimer)</h3>
+          <ul class="list-disc ps-6 text-sm space-y-1">
+            <li>ผลลัพธ์ที่ได้ เป็นการประเมินความเสี่ยงต่อการเจ็บป่วยหรือเสียชีวิตจากโรคเส้นเลือดหัวใจตีบตันและโรคเส้นเลือดสมองตีบตันในระยะเวลา 10 ปีข้างหน้า</li>
+            <li>ผลการประเมินและคำแนะนำที่ได้รับจากโปรแกรมนี้ไม่สามารถใช้แทนการตัดสินใจของแพทย์ได้ การตรวจรักษาเพิ่มเติมหรือการให้ยารักษาขึ้นอยู่กับดุลยพินิจของแพทย์และการปรึกษากันระหว่างแพทย์และตัวท่าน</li>
+            <li>ผลการประเมินนี้ห้ามนำไปใช้อ้างอิงในการค้า เช่น การทำประกันชีวิต และไม่สามารถใช้กับผู้ป่วยโรคลิ้นหัวใจหรือโรคหัวใจเต้นผิดจังหวะได้</li>
+          </ul>
+
+          <div class="card-actions justify-between mt-6">
+            <a href="#form" class="btn" id="backBtn">ย้อนกลับ</a>
+            <a href="#about" class="btn btn-ghost">เกี่ยวกับ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="hidden mt-6">
+      <div class="card bg-base-100 shadow">
+        <div class="card-body">
+          <h2 class="card-title">Thai CV 2015</h2>
+          <p class="text-sm text-base-content/70">This is a reverse-engineered, no‑jQuery, DaisyUI-styled version of the Thai CV risk score calculator.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<script src="app.js" defer></script>
+</body>
+</html>
