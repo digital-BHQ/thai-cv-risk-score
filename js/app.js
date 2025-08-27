@@ -317,7 +317,7 @@ async function onSubmit(e) {
 
   const consent = document.getElementById('consent_ack');
   if (!consent || !consent.checked) {
-    alert("โปรดยอมรับข้อตกลงก่อนส่งข้อมูล (Please check consent).");
+    alert("โปรดยอมรับข้อตกลงก่อนส่งข้อมูล");
     return;
   }
 
