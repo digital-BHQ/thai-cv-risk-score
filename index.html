@@ -73,9 +73,38 @@
 </head>
 <body class="min-h-screen">
   <div class="bg-base-100 h-12 flex place-content-center items-center shadow-sm sticky top-0 z-20">
+    <div class="max-w-3xl flex flex-row align-center">
     <h1 class="text-xl">
       Thai Cardio Vascular Risk Score
     </h1>
+    <button class="btn place-self-end" onclick="info_modal.showModal()">
+      <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px">
+        <path fill="#d7d5d0" d="M 12 2 C 6.4889971 2 2 6.4889971 2 12 C 2 17.511003 6.4889971 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889971 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 11 7 L 11 9 L 13 9 L 13 7 L 11 7 z M 11 11 L 11 17 L 13 17 L 13 11 L 11 11 z"/>
+      </svg>
+    </button>
+      <dialog id="info_modal" class="modal">
+        <div class="modal-box">
+          <h3 class="text-lg font-bold">เกี่ยวกับแอปพลิเคชั่น</h3>
+          <p class="py-4 font-regular">โปรแกรมนี้ทำขึ้นเพื่อใช้ประเมินความเสี่ยงต่อการเกิดโรคหัวใจและหลอดเลือด โดยแสดงผลการประเมินเป็นความเสี่ยงต่อการเสียชีวิตหรือเจ็บป่วยจากโรคเส้นเลือดหัวใจตีบตันและโรคเส้นเลือดสมองตีบตันในระยะเวลา 10 สิบปีข้างหน้า ซึ่งสามารถใช้ได้ทั้งในกรณีที่ท่านไม่มีผลเลือดโดยให้ใช้ขนาดรอบเอวหรือขนาดรอบเอวหารด้วยส่วนสูงแทน และในกรณีที่มีผลการตรวจระดับไขมันในเลือด 
+          </p>
+          <p class="py-4 font-light">
+          แบบประเมินนี้สร้างขึ้นจากการติดตามศึกษาหาปัจจัยเสี่ยงต่อการเกิดโรคหัวใจและหลอดเลือดในประชากรไทยภายใต้โครงการศึกษาพนักงานการไฟฟ้าฝ่ายผลิตแห่งประเทศไทยเป็นระยะเวลายาวนานกว่า 20 ปี แบบประเมินความเสี่ยงนี้จึงควรใช้เฉพาะในคนไทยที่มีอายุ 35-70 ปี ยังไม่มีโรคหัวใจและหลอดเลือด 
+          </p>
+          <p class="py-4 font-light">
+          หากท่านมีข้อสงสัยหรือไม่แน่ใจแนะนำให้เข้ารับการประเมินโดยแพทย์ผู้เชี่ยวชาญ
+          </p>
+          <p>
+          ขอขอบคุณ <a href="https://www.rama.mahidol.ac.th/cardio_vascular_risk/thai_cv_risk_score/" target="_blank">คณะแพทยศาสตร์ โรงพยาบาลรามาธิบดีมหาวิทยาลัยมหิดล</a> สำหรับต้นฉบับ
+          </p>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn">ปิด</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+    </div>
   </div>
 
   <main class="container mx-auto p-4 max-w-3xl bg-[#FAFAFB]">
@@ -210,6 +239,6 @@
 
   </main>
 
-<script src="js/app.js" defer></script>
+<script src="script/app.js" defer></script>
 </body>
 </html>
