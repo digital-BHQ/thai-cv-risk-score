@@ -11,7 +11,23 @@ const $ = (sel, root = document) => root.querySelector(sel);
 function showSection(id) {
   ['#formSection', '#resultSection', '#about'].forEach((s) => $(s)?.classList.add('hidden'));
   $(id)?.classList.remove('hidden');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Also ask the PARENT to jump to the anchor via a plain <a> navigation (no parent JS needed)
+    try {
+      const a = document.createElement('a');
+      a.href = '#cv-top';          // must match the parent’s anchor id
+      a.target = '_parent';        // navigate the parent document
+      a.rel = 'noopener';          // hygiene
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } catch (e) {
+      // If browser blocks scripted clicks, nothing breaks; iframe still scrolls to top.
+      console.warn('Could not navigate parent to #cv-top:', e);
+    }
+  });
 }
 
 // range value badge on the right of the label row
